@@ -20,4 +20,22 @@ pub fn refs() {
     // address of &&tmp3: 0x16fbcad28
     println!("address of &&tmp3: {:p}", tmp4);
 
+    caller1();
+}
+
+fn caller1() {
+    let mut p1: usize = 12345;
+    callee1(&mut p1);
+}
+
+fn callee1(p1: &mut usize) {
+    println!("&p1.to_string() of &usize => {}", &p1.to_string());
+    println!("p1.to_string() of &usize => {}", p1.to_string());
+    println!("(*p1).to_string() of &usize => {}", (*p1).to_string());
+
+    let mut tmp = (*p1).to_owned();
+    tmp += tmp;
+    println!("assign (*p1).to_owned() to var again and add => {}", tmp.to_string());
+
+    // tmp += tmp; <- Use of moved value
 }

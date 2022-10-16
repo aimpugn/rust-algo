@@ -6,7 +6,7 @@ pub struct Config;
 
 // Defining a Trait
 // - https://doc.rust-lang.org/book/ch10-02-traits.html#defining-a-trait
-pub trait ArgsConfig {
+pub trait ArgsMap {
     // https://doc.rust-lang.org/error-index.html#E0599
     fn parse(self: &Self) -> HashMap<String, String>;
     fn print_args_with_delimeter(args: &Vec<String>, delimeter: Option<&str>);
@@ -14,7 +14,7 @@ pub trait ArgsConfig {
 
 // Implementing a Trait on a Type
 // - https://doc.rust-lang.org/book/ch10-02-traits.html#implementing-a-trait-on-a-type
-impl ArgsConfig for Config {
+impl ArgsMap for Config {
     // `&self`
     // - 없으면 외부에서 호출이 안 된다
     // - `&self` is sugar for `self: &Self`
