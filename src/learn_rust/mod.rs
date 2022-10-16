@@ -5,6 +5,7 @@ mod functions;
 mod moves;
 mod refs;
 mod borrows;
+mod loops;
 
 pub use numbers::*;
 pub use array_and_slices::*;
@@ -13,3 +14,4 @@ pub use functions::*;
 pub use moves::*;
 pub use refs::*;
 pub use borrows::*;
+pub use loops::*;

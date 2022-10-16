@@ -17,6 +17,7 @@ fn main() {
     about_borrows();
     about_usize();
     about_array();
+    for_loops();
     about_i32();
     about_i64();
     caller();
