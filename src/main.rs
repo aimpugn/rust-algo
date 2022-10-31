@@ -20,13 +20,16 @@ fn main() {
     for_loops();
     about_i32();
     about_i64();
+    about_divide();
     caller();
     refs();
 
     println!("=================== heap sort ===================");
     let mut vec_to_sort: Vec<i64> = vec![7, 9, 4, 8, 6, 3];
+    println!("{}", iter_to_string(vec_to_sort.iter(),","));
     let len = vec_to_sort.len();
-    heap::heap_sort(&mut vec_to_sort, len);
+    let sorted = heap::sort(&mut vec_to_sort, len).unwrap();
+    println!("ㄴ{}", iter_to_string(sorted.iter(),","));
 }
 
 

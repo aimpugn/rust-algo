@@ -35,5 +35,9 @@ pub fn about_i64(){
     let num3_tmp2 = num3 * 2;
     println!("&num3 * 2 => {}", num3_tmp1); // 60
     println!("and then num3 * 2 => {}", num3_tmp2); // 60
+}
 
+pub fn about_divide(){
+    println!("5 / 2 is {}", (5 / 2).to_string());
+    println!("8 / 3 is {}", (8 / 3).to_string());
 }

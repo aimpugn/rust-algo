@@ -1,4 +1,17 @@
 pub fn for_loops() {
+    for i in 2..10 {
+        print!("{}, ", i.to_string())
+    }
+    println!();
+    for i in 10..1 {
+        print!("{}, ", i.to_string())
+    }
+    println!();
+    for i in (1..10).rev() {
+        print!("{}, ", i.to_string())
+    }
+    println!();
+
     let arr1 = vec![1, 2, 3, 4];
     for el in arr1.clone() {
         print!("{},", el.to_string());
