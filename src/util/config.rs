@@ -18,12 +18,12 @@ impl ArgsMap for Config {
     // `&self`
     // - 없으면 외부에서 호출이 안 된다
     // - `&self` is sugar for `self: &Self`
-    fn parse(&self) -> HashMap<String, String> {
+    fn parse(&self) -> HashMap<String, String> { // HashMap: https://doc.rust-lang.org/std/collections/struct.HashMap.html
         // arguments 받기
         // - https://doc.rust-lang.org/book/ch12-01-accepting-command-line-arguments.html#saving-the-argument-values-in-variables
         // iterator -> collection
         // - https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect
-        let args_collect: Vec<String> = env::args().collect(); // === let args_collect: Vec<String> = env::args().collect();
+        let args_collect: Vec<String> = env::args().collect(); // === let args_collect = env::args().collect::<Vec<String>>();
         let args_len = args_collect.len();
         let mut map : HashMap<String, String> = HashMap::new();
         if args_len > 0 {
