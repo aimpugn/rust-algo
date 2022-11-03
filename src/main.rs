@@ -7,8 +7,9 @@ use crate::util::{ArgsMap, iter_to_string};
 use crate::sort::heap;
 use crate::sort::selection;
 
-//           delimiter   args parts
-// cargo run    --       test=value
+//           <delimiter> <args parts>
+// cargo run    --       --mod=learn_rust
+// `--`: unix convention(https://unix.stackexchange.com/a/187548). 옵션이 끝났음을 알린다.
 fn main() {
     delegator();
 }
