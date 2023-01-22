@@ -1,6 +1,7 @@
 mod util;
 mod sort;
 mod learn_rust;
+mod search;
 
 use crate::learn_rust::*;
 use crate::util::{ArgsMap, iter_to_string};
