@@ -95,10 +95,11 @@ a>1, b>1에 대해 $T(n)=a\times{T}\times{n\over{b}} + f(n)$인 점화식에서,
 > 4. 레벨의 수는 $\log_b{n}$  
 >
 > 전체 시간 복잡도:  
-> $$
-> T(n) = \sum_{i=0}^{log_b{n}}a^{i}\cdot{f({n\over{b^{i}}})}
-> $$  
->
+
+$$
+T(n) = \sum_{i=0}^{log_b{n}}a^{i}\cdot{f({n\over{b^{i}}})}
+$$
+
 > 1. $f(n) = O(n^{\log_b{a} - \epsilon})$ 인 경우 ($\epsilon > 0$):  
 > 하위 레벨로 갈수록 작업량이 지수적으로 감소하므로 상위 레벨에서 대부분의 작업이 이루어진다.  
 > 전체 시간 복잡도는 $T(n) = \Theta(n^{\log_b{a}})$
