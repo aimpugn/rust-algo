@@ -32,8 +32,8 @@ function factorial(n)
 > 수학적 귀납법의 다양한 가정과 전개  
 >
 > - $n = k$ 시 성립, then $n = k + 1$ 시에도 성립
-> - $n\leq{k}<n$인 모든 k에 대해 성립, then n 시에도 성립
-> - $n=k$ 시 성립, then $n=2k$ 시에도 성립
+> - $n\leq{k}\lt{n}$인 모든 k에 대해 성립, then n 시에도 성립  
+> - $n=k$ 시 성립, then $n=2k$ 시에도 성립  
 
 ### 마스터 정리
 
