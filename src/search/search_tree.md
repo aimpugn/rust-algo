@@ -17,6 +17,10 @@
       - [탐색](#탐색)
       - [삽입](#삽입)
       - [삭제](#삭제)
+        - [`key_to_delete`가 리프 노드인 경우](#key_to_delete가-리프-노드인-경우)
+        - [`key_to_delete`의 자식 노드가 한 개인 경우](#key_to_delete의-자식-노드가-한-개인-경우)
+        - [`key_to_delete`의 자식 노드가 두 개인 경우](#key_to_delete의-자식-노드가-두-개인-경우)
+        - [pseudo code](#pseudo-code)
 
 ## 구성
 
@@ -184,17 +188,77 @@ function binary_tree_insert(root_node, key_to_insert)
 
 #### 삭제
 
-- 삭제 시 케이스
-  - `key_to_delete`가 리프 노드인 경우
-    - `key_to_delete` 노드를 버린다
-  - `key_to_delete`의 자식 노드가 한 개인 경우
-    - `key_to_delete`의 부모 노드가 `key_to_delete`의 자식 노드를 직접 가리키도록 한다
-  - `key_to_delete`의 자식 노드가 두 개인 경우
-    - `key_to_delete`의 **우측** 서브 트리의 최소 원소 노드 `least_node`를 삭제
-    - `least_node`노드를 `key_to_delete` 자리에 놓는다
+```mermaid
+flowchart TD
+  55---15
+  55---60
+  15---8
+  15---28
+  8---3
+  28---18
+  28---30
+  30---48
+  48---38
+  48---50
+  38---33
+  33---32
+  33---36
+```
+
+##### `key_to_delete`가 리프 노드인 경우
+
+> `key_to_delete` 노드를 버린다  
+>
+> ex1) `18` 노드를 삭제하려면 `18` 노드를 가리키고 있던 포인터인 `28.left`를 `NULL`로 바꿔주면 된다
+
+##### `key_to_delete`의 자식 노드가 한 개인 경우
+
+> `key_to_delete`의 부모 노드가 `key_to_delete`의 자식 노드를 직접 가리키도록 한다  
+
+삭제하려는 노드의 자식 노드가 하나이므로, 삭제하려는 노드를 가리키는 부모 노드의 포인터를 해당 자식 노드와 연결을 하면 된다
+
+지우려는 자식 노드가 하나인 경우 그 자식 노드가 작으면 left, 크면 right에 위치하는데, 부모의 부모 노드와의 관계도 같게 유지가 된다.
+
+```mermaid
+flowchart TD
+  parent---node_to_delete
+  node_to_delete---child
+  child---left_grand_child
+  child---right_grand_child
+```
+
+> ex1) `30` 노드를 삭제하려면 `30` 노드를 가리키고 있던 포인터인 `28.right`를 `30`의 유일한 자식 노드 `48`로 치환한다  
+> ex2) `38` 노드를 삭제하려면 `38` 노드를 가리키고 있던 포인터인 `48.left`를 `38`의 유일한 자식 노드 `33`으로 치환한다
+
+##### `key_to_delete`의 자식 노드가 두 개인 경우
+
+> 1. `key_to_delete`의 **우측** 서브 트리의 최소 원소 노드 `least_node`를 삭제  
+> 2. `least_node`노드를 `key_to_delete` 자리에 놓는다
+
+자식 노드가 한 개인 경우보다 복잡한데, 삭제하려는 노드를 가리키는 부모 노드의 포인터는 하나인데, 삭제하려는 노드의 자식 노드가 두 개이므로, 삭제하려는 노드의 부모 노드의 포인터가 두 자식 노드 중 어떤 노드를 가리켜야 하는지 알 수 없기 때문이다.
+
+**삭제하려는 노드 주변의 구조는 그대로 유지**해야 한다
+
+- **삭제하려는 노드 자리에 옮겨 놓아도 이진 검색 트리의 성질을 전혀 꺠지 않는 원소**를 찾아야 한다
+  - 좌측 서브 트리에서 가장 큰 노드(삭제하려는 노드의 직전 노드)
+  - 우측 서브 트리에서 가장 작은 원소(삭제하려는 노드의 직후 노드)
+
+여기서 `삭제하려는 노드의 직후 노드`는 절대 왼쪽 자식 노드를 가질 수 없다.
+삭제하려는 노드의 우측 자식 노드에서 시작해서 좌측(작은 값)의 리프 노드에 도달하면 그것이 직후 노드이기 때문  
+직후 원소의 삭제는 "`key_to_delete`가 리프 노드인 경우" 또는 "`key_to_delete`의 자식 노드가 한 개인 경우" 둘 중 하나의 경우에 속하게 된다
+
+##### pseudo code
 
 ```js
-function binary_search_delete(root_node, key_to_delete)
+/**
+ * @property root_node 검색할 트리의 루트 노드
+ * @property root_node.key 루트 노드의 `key`. 검색할 `key`와 비교하게 된다
+ * @property root_node.left 루트 노드의 좌측 자식 노드. 기본값은 NULL
+ * @property root_node.right 루트 노드의 우측 자식 노드. 기본값은 NULL
+ * @property key_to_delete 삭제하려고 하는 key
+ * @property parent_key_to_delete 삭제하려고 하는 key의 부모 노드의 key
+ */
+function binary_search_delete(root_node, key_to_delete, parent_key_to_delete)
 {
   if()
 }
